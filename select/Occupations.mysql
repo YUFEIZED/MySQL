@@ -1,0 +1,11 @@
+set @c1=0, @c2=0, @c3=0, @c4=0;
+select max(Doctor), max(Professor), max(Singer), max(Actor)from
+(select case Occupation when 'Doctor' then @c1:=@c1+1
+                       when 'Professor' then @c2:=@c2+1
+                       when 'Singer' then @c3:=@c3+1
+                       when 'Actor' then @c4:=@c4+1 end as countNum,
+       if(Occupation='Doctor',Name,null) as Doctor,
+       if(Occupation='Professor',Name,null) as Professor,
+       if(Occupation='Singer',Name,null) as Singer,
+       if(Occupation='Actor',Name,null) as Actor
+       from OCCUPATIONS order by Name)as d group by countNum
