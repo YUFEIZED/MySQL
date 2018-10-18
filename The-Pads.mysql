@@ -1,0 +1,2 @@
+select concat(Name,"(", substring(Occupation,1,1) ,")" ) from OCCUPATIONS order by Name asc;
+select concat("There are a total of ", count(*)," ", lower(substring(Occupation,1,1)), substring(Occupation,2),"s.") from OCCUPATIONS group by Occupation order by count(*) asc, Occupation asc;
